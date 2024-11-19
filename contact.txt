@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+</head>
+
+<body>
+
+    <div class="rainbow-background"></div> <!-- Background Div -->
+
+    <div id="contact">
+        <h1>Contact Us</h1>
+        <form action="submit_contact.php" method="POST"> <!-- Replace with your server-side processing script -->
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <h2>Our Contact Details</h2>
+            <p><strong>Email:</strong> info@stvincentngp.edu.in</p>
+            <p><strong>Phone:</strong> +91 9423683433</p>
+            <p><strong>Address:</strong> St. Vincent Pallotti College of Engineering & Technology, Nagpur, India.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

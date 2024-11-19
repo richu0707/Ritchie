@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST. Vincent Pallotti College of Engineering and Technology</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f8f8, #8ffbe7); /* Gradient background */
+            color: #333; /* Darker text color for readability */
+            position: relative; /* Set position relative for watermark */
+            perspective: 1000px; /* Perspective for 3D effect */
+        }
+
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Offset to truly center */
+            opacity: 0.1; /* Light opacity for watermark effect */
+            pointer-events: none; /* Make it non-interactive */
+            z-index: -1; /* Behind all other content */
+            filter: grayscale(100%); /* Initially black and white */
+            transition: filter 0.5s ease-in-out; /* Smooth transition for hover */
+        }
+
+        .watermark:hover {
+            filter: grayscale(0%); /* Change to color on hover */
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(80deg, white yellow, green, lightblue); /* Rainbow background */
+            background-size: 400%; /* Expand the size for animation */
+            color: white; /* Light text color */
+            padding: 20px;
+            text-align: center;
+            animation: rainbowAnimation 5s ease infinite; /* Rainbow background animation */
+            transform: rotateY(0deg); /* Initial rotation for 3D effect */
+            transition: transform 0.5s; /* Smooth transition for hover */
+        }
+
+        header:hover {
+            transform: rotateY(10deg); /* Rotate on hover */
+        }
+
+        /* Logo Image Style */
+        .header-logo {
+            max-width: 1000px; /* Adjust as necessary */
+            height: auto; /* Keep aspect ratio */
+            filter: grayscale(100%); /* Initially black and white */
+            transition: filter 0.5s ease-in-out; /* Smooth transition for hover */
+        }
+
+        .header-logo:hover {
+            filter: grayscale(0%); /* Change to color on hover */
+        }
+
+        nav ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+
+        nav ul li {
+            display: inline; /* Horizontal list */
+            margin: 0 15px; /* Space between links */
+        }
+
+        nav ul li a {
+            color: white; /* Link color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold text */
+            transition: color 0.3s ease-in-out; /* Smooth transition for hover */
+        }
+
+        nav ul li a:hover {
+            color: #FFD700; /* Golden color on hover */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Home Section */
+        #home {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            max-width: 800px; /* Limit width for readability */
+            margin: 20px auto; /* Center the section */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center the text */
+            animation: slideUp 1.5s ease-in-out; /* Slide-up animation for home section */
+            transform: rotateX(0deg); /* Initial rotation for 3D effect */
+            transition: transform 0.5s; /* Smooth transition for hover */
+        }
+
+        #home:hover {
+            transform: rotateX(5deg); /* Rotate on hover */
+        }
+
+        .home-content h2 {
+            font-size: 32px; /* Larger font for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+            animation: colorChange 5s infinite alternate; /* Continuous color change */
+        }
+
+        .home-content p {
+            margin-bottom: 15px; /* Space between paragraphs */
+            font-size: 18px; /* Font size for better readability */
+            line-height: 1.8; /* Line height for better spacing */
+            animation: fadeIn 2s ease-in-out; /* Fade-in effect */
+        }
+
+        .btn {
+            display: inline-block; /* Make button inline-block */
+            padding: 10px 20px; /* Button padding */
+            background-color: #333; /* Button background */
+            color: white; /* Button text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Button hover effect */
+            animation: rainbowButton 5s linear infinite; /* Rainbow button animation */
+        }
+
+        .btn:hover {
+            background-color: #FFD700; /* Golden color on hover */
+            transform: scale(1.05); /* Slightly increase button size on hover */
+        }
+
+        /* Login Section */
+        #login {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 400px; /* Limit width for readability */
+            margin: 20px auto; /* Center the section */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center the text */
+            animation: fadeIn 1.5s ease-in-out; /* Login fade-in animation */
+            transform: rotateY(0deg); /* Initial rotation for 3D effect */
+            transition: transform 0.5s; /* Smooth transition for hover */
+        }
+
+        #login:hover {
+            transform: rotateY(10deg); /* Rotate on hover */
+        }
+
+        #login h2 {
+            margin-bottom: 20px; /* Space below the heading */
+            animation: colorChange 5s infinite alternate; /* Continuous color change */
+        }
+
+        #login input[type="text"],
+        #login input[type="password"] {
+            width: 80%; /* Full width */
+            padding: 10px; /* Padding inside input */
+            margin: 10px 0; /* Margin between inputs */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 4px; /* Rounded corners */
+            animation: fadeIn 2s ease-in-out; /* Fade-in effect */
+        }
+
+        #login input[type="submit"] {
+            background-color: #333; /* Button background */
+            color: white; /* Button text color */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Button padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            animation: fadeIn 2s ease-in-out; /* Fade-in effect */
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Button hover effect */
+        }
+
+        #login input[type="submit"]:hover {
+            background-color: #d9ff00; /* Golden color on hover */
+            transform: scale(1.05); /* Slightly increase button size on hover */
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            animation: fadeIn 1.5s ease-in-out; /* Footer fade-in animation */
+            transform: rotateX(0deg); /* Initial rotation for 3D effect */
+            transition: transform 0.5s; /* Smooth transition for hover */
+        }
+
+        footer:hover {
+            transform: rotateX(5deg); /* Rotate on hover */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #333;
+            }
+            100% {
+                color: #FFD700; /* Change to golden */
+            }
+        }
+
+        @keyframes rainbowAnimation {
+            0% {
+                background-position: 0% 50%; /* Start at the left */
+            }
+            100% {
+                background-position: 100% 50%; /* Move to the right */
+            }
+        }
+
+        @keyframes rainbowButton {
+            0% {
+                background: linear-gradient(80deg, white yellow, green, lightblue ); /* Rainbow colors */
+            }
+            100% {
+                background: linear-gradient(80deg, white yellow, green, lightblue); /* Reverse rainbow */
+            }
+        }
+
+        @keyframes changeBgColor {
+            0% {
+                background-color: #333; /* Start with black */
+            }
+            100% {
+                background-color: #00fff7; /* Change to golden */
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px; /* Smaller title on small screens */
+            }
+
+            .home-content h2 {
+                font-size: 24px; /* Smaller heading on small screens */
+            }
+
+            .home-content p {
+                font-size: 16px; /* Smaller font size for paragraphs */
+            }
+
+            #login {
+                max-width: 90%; /* Full width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="C:\Users\Bhupendra\Downloads\logo.png" alt="ST. Vincent Pallotti College of Engineering and Technology" class="header-logo"> <!-- Logo Image -->
+    <!-- Header Section -->
+    <header>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="C:\Users\Bhupendra\Downloads\img_1633606590.jpg" style="width:100%">
+            </div>
+    
+            <div class="mySlides fade">
+                <img src="C:\Users\Bhupendra\Downloads\img_1723544779.jpg" style="width:100%">
+            </div>
+    
+            <div class="mySlides fade">
+                <img src="C:\Users\Bhupendra\Downloads\img_1685936450.jpg" style="width:100%">
+            </div>
+            <script src="scripta.js"></script>
+    
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="contact.html">Contact</a></li>
+
+                <li><a href="student_dashboard.html">Student Dasboard</a></li>
+
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <a href="index.html">
+            <img src="home_icon.png" alt="home"/>
+        </a>
+        <div class="home-content">
+            <h2>Welcome to ST. Vincent Pallotti College of Engineering and Technology</h2>
+            <p>Where your journey toward a successful future begins. Your future starts here. Join one of the leading colleges in education and research as we commit to shaping innovative minds and fostering excellence.</p>
+            <p>At SVPCET, we offer a dynamic learning environment equipped with cutting-edge technology, state-of-the-art laboratories, and a highly qualified faculty dedicated to nurturing your potential.</p>
+            <p>Whether you aspire to be an engineer, a researcher, or a leader in the technological world, our comprehensive programs and vibrant campus life provide the perfect foundation for your personal and professional growth.</p>
+            <a href="about.html" class="btn">Learn More</a> <!-- Updated Link -->
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login">
+        <h2>Login</h2>
+        <div>
+            <h3>Student Login</h3>
+            <form id="studentLoginForm" onsubmit="return handleStudentLogin(event)">
+                <input type="text" name="student_id" placeholder="Student ID" required>
+                <input type="password" name="student_password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div>
+            <h3>Admin Login<h3>
+            <form id="adminLoginForm" onsubmit="return handleAdminLogin(event)">
+                <input type="text" name="admin_id" placeholder="Admin ID" required>
+                <input type="password" name="admin_password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function handleStudentLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the student ID from the input
+            const studentId = event.target.student_id.value;
+            
+            // Redirect to the student dashboard, passing the student ID
+            window.location.href = `student_dashboard.html?studentId=${studentId}`; // Update with your actual URL
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault(); // Prevent form submission
+            // Redirect to admin dashboard (implement as needed)
+            window.location.href = 'admin_dashboard.html'; // Update with your actual URL
+        }
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ST. Vincent Pallotti College of Engineering and Technology. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

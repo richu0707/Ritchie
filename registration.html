@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-form {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .registration-form h1 {
+            margin-bottom: 1em;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .registration-form label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .registration-form input {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .registration-form button {
+            width: 100%;
+            padding: 0.75em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .registration-form button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h1>Student Registration</h1>
+        <form action="submit_registration.php" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script type="text/javascript">
+        function cap() {
+            var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*+';
+            var captcha = '';
+            for (var i = 0; i < 6; i++) {
+                captcha += alpha[Math.floor(Math.random() * alpha.length)];
+            }
+            document.getElementById("capt").value = captcha;
+        }
+
+        function validcap() {
+            var stg1 = document.getElementById('capt').value;
+            var stg2 = document.getElementById('textinput').value;
+            if (stg1 === stg2) {
+                alert("Form is validated successfully.");
+                return true;
+            } else {
+                alert("Please enter a valid captcha.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

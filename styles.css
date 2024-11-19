@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Gradient background */
+    color: #333; /* Darker text color for readability */
+    position: relative; /* Set position relative for watermark */
+    perspective: 1000px; /* Perspective for 3D effect */
+}
+
+.watermark {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset to truly center */
+    opacity: 0.1; /* Light opacity for watermark effect */
+    pointer-events: none; /* Make it non-interactive */
+    z-index: -1; /* Behind all other content */
+    filter: grayscale(100%); /* Initially black and white */
+    transition: filter 0.5s ease-in-out; /* Smooth transition for hover */
+}
+
+.watermark:hover {
+    filter: grayscale(0%); /* Change to color on hover */
+}
+
+header {
+    background: linear-gradient(800deg, yellow, green, blue, , white); /* Rainbow background */
+    background-size: 400%; /* Expand the size for animation */
+    color: white; /* Light text color */
+    padding: 20px;
+    text-align: center;
+    animation: rainbowAnimation 5s ease infinite; /* Rainbow background animation */
+    transform: rotateY(0deg); /* Initial rotation for 3D effect */
+    transition: transform 0.5s; /* Smooth transition for hover */
+}
+
+header:hover {
+    transform: rotateY(10deg); /* Rotate on hover */
+}
+
+.header-logo {
+    max-width: 1000px; /* Adjust as necessary */
+    height: auto; /* Keep aspect ratio */
+    filter: grayscale(100%); /* Initially black and white */
+    transition: filter 0.5s ease-in-out; /* Smooth transition for hover */
+}
+
+.header-logo:hover {
+    filter: grayscale(0%); /* Change to color on hover */
+}
+
+nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+nav ul li {
+    display: inline; /* Horizontal list */
+    margin: 0 15px; /* Space between links */
+}
+
+nav ul li a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s ease-in-out; /* Smooth transition for hover */
+}
+
+nav ul li a:hover {
+    color: #FFD700; /* Golden color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+#home {
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+    max-width: 800px; /* Limit width for readability */
+    margin: 20px auto; /* Center the section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center; /* Center the text */
+   
+}
+
+#home:hover {
+    transform: rotateX(5deg); /* Rotate on hover */
+}
+
+.home-content h2 {
+    font-size: 32px; /* Larger font for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+   
+}
+
+.home-content p {
+    margin-bottom: 15px; /* Space between paragraphs */
+    font-size: 18px; /* Font size for better readability */
+    line-height: 1.8; /* Line height for better spacing */
+}
+
+.btn {
+    display: inline-block; /* Make button inline-block */
+    padding: 10px 20px; /* Button padding */
+    background-color: #333; /* Button background */
+    color: white; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Button hover effect */
+   }
+
+.btn:hover {
+    background-color: #FFD700; /* Golden color on hover */
+    transform: scale(1.05); /* Slightly increase button size on hover */
+}
+
+#login {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 400px; /* Limit width for readability */
+    margin: 20px auto; /* Center the section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center; /* Center the text */
+  
+}
+
+
+
+
+#login input[type="submit"]:hover {
+    background-color: #FFD700; /* Golden color on hover */
+    transform: scale(1.05); /* Slightly increase button size on hover */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    animation: fadeIn 1.5s ease-in-out; /* Footer fade-in animation */
+    transform: rotateX(0deg); /* Initial rotation for 3D effect */
+    transition: transform 0.5s; /* Smooth transition for hover */
+}
+
+footer:hover {
+    transform: rotateX(5deg); /* Rotate on hover */
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 24px; /* Smaller title on small screens */
+    }
+
+    .home-content h2 {
+        font-size: 24px; /* Smaller heading on small screens */
+    }
+
+    .home-content p {
+        font-size: 16px; /* Smaller font size for paragraphs */
+    }
+
+    #login {
+        max-width: 90%; /* Full width on small screens */
+    }
+}

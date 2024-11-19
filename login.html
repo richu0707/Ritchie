@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Engineering College</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .login-container h1 {
+            margin-bottom: 1em;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .login-container input,
+        .login-container select {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .login-container input:focus,
+        .login-container select:focus {
+            border-color: #9b59b6;
+            box-shadow: 0 0 8px rgba(155, 89, 182, 0.2);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 0.75em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #555;
+        }
+
+        .login-container .links {
+            margin-top: 1em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .login-container .links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container .links a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body onload="cap()">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form action="login_process.php" method="post">
+            <label for="user-type">I am a:</label>
+            <select id="user-type" name="user-type" required>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+            
+            <label for="captcha">Enter Captcha:</label>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" readonly id="capt" name="captcha">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="textinput" name="textinput">
+                </div>
+            </div>
+            <button type="submit" onclick="return validcap()">Submit</button>
+           
+        </form>
+        <h6>Reload Captcha <img src="refresh.jpg" width="40px" onclick="cap()"></h6>
+        <div class="links">
+            <a href="registration.html">New Registration</a>
+            <a href="forget_password.html">Forgot Password</a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function cap() {
+            var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*+';
+            var captcha = '';
+            for (var i = 0; i < 6; i++) {
+                captcha += alpha[Math.floor(Math.random() * alpha.length)];
+            }
+            document.getElementById("capt").value = captcha;
+        }
+
+        function validcap() {
+            var stg1 = document.getElementById('capt').value;
+            var stg2 = document.getElementById('textinput').value;
+            if (stg1 === stg2) {
+                alert("Form is validated successfully.");
+                return true;
+            } else {
+                alert("Please enter a valid captcha.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ST. Vincent Pallotti College of Engineering and Technology</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            overflow: hidden; /* Prevent scrolling on the body */
+        }
+
+        /* Rainbow animation background */
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .rainbow-background {
+            background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%; /* Increase size for smoother animation */
+            animation: rainbow 15s ease infinite; /* Animation duration and timing */
+            position: absolute; /* Position it behind the content */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure it's behind other content */
+        }
+
+        /* Light background color for content area */
+        .content-area {
+            position: relative; /* Position relative to use z-index */
+            z-index: 1; /* Ensure content is above the background */
+        }
+
+        /* Header Section */
+        header {
+            background: rgba(51, 51, 51, 0.8); /* Dark background with transparency */
+            color: white; /* Light text color */
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px; /* Adjusted font size */
+            margin-bottom: 10px; /* Space below the title */
+        }
+
+        /* Section Styling */
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Form Elements */
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 80%; /* Full width */
+            padding: 10px; /* Padding inside input */
+            margin: 10px 0; /* Margin between inputs */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        input[type="submit"] {
+            background-color: #333; /* Button background */
+            color: white; /* Button text color */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Button padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555; /* Darker shade on hover */
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%; /* Full width */
+            border-collapse: collapse; /* Remove spacing between cells */
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc; /* Light border */
+            text-align: left; /* Left align text */
+        }
+
+        th {
+            background-color: #f4f4f4; /* Light background for headers */
+        }
+    </style>
+</head>
+<body>
+    <div class="rainbow-background"></div> <!-- Rainbow background div -->
+
+    <div class="content-area"> <!-- Content wrapper to ensure correct layering -->
+        <!-- Header Section -->
+        <header>
+            <h1>Admin Dashboard - ST. Vincent Pallotti College of Engineering and Technology</h1>
+        </header>
+
+        <!-- Student Management Section -->
+        <section id="studentManagement">
+            <h2>Manage Students</h2>
+            <form id="studentForm">
+                <input type="text" id="studentId" placeholder="Student ID" required>
+                <input type="text" id="studentName" placeholder="Student Name" required>
+                <input type="number" id="studentFees" placeholder="Fees" required>
+                <input type="submit" value="Add/Edit Student">
+            </form>
+
+            <h3>Students List</h3>
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Fees</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="studentsBody"></tbody>
+            </table>
+        </section>
+
+        <!-- Fees Management Section -->
+        <section id="feesManagement">
+            <h2>Manage Fees</h2>
+            <form id="feeForm">
+                <input type="text" id="courseName" placeholder="Course Name" required>
+                <input type="number" id="courseFees" placeholder="Fees" required>
+                <input type="submit" value="Add Fee Structure">
+            </form>
+
+            <h3>Fees List</h3>
+            <table id="feesTable">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Fees</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="feesBody"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        // Initialize arrays to hold students and fees
+        let students = [];
+        let fees = [];
+
+        // Load students and fees from local storage
+        window.onload = function() {
+            const storedStudents = localStorage.getItem('students');
+            const storedFees = localStorage.getItem('fees');
+
+            if (storedStudents) {
+                students = JSON.parse(storedStudents);
+                displayStudents();
+            }
+            if (storedFees) {
+                fees = JSON.parse(storedFees);
+                displayFees();
+            }
+        };
+
+        // Display students in the table
+        function displayStudents() {
+            const studentsBody = document.getElementById('studentsBody');
+            studentsBody.innerHTML = ''; // Clear the existing table body
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.fees}</td>
+                    <td><button onclick="deleteStudent('${student.id}')">Delete</button></td>
+                `;
+                studentsBody.appendChild(row);
+            });
+        }
+
+        // Display fees in the table
+        function displayFees() {
+            const feesBody = document.getElementById('feesBody');
+            feesBody.innerHTML = ''; // Clear the existing table body
+
+            fees.forEach(fee => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${fee.course}</td>
+                    <td>${fee.fees}</td>
+                    <td>${fee.status}</td>
+                `;
+                feesBody.appendChild(row);
+            });
+        }
+
+        // Handle student form submission
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const studentId = document.getElementById('studentId').value;
+            const studentName = document.getElementById('studentName').value;
+            const studentFees = document.getElementById('studentFees').value;
+
+            // Check if the student already exists
+            const existingStudentIndex = students.findIndex(student => student.id === studentId);
+            if (existingStudentIndex !== -1) {
+                // Update existing student
+                students[existingStudentIndex].name = studentName;
+                students[existingStudentIndex].fees = studentFees;
+            } else {
+                // Add new student
+                const newStudent = {
+                    id: studentId,
+                    name: studentName,
+                    fees: studentFees
+                };
+                students.push(newStudent);
+            }
+
+            // Save students to local storage
+            localStorage.setItem('students', JSON.stringify(students));
+
+            // Reset the form and refresh the displayed list
+            document.getElementById('studentForm').reset();
+            displayStudents();
+        });
+
+        // Delete student from the list
+        function deleteStudent(studentId) {
+            students = students.filter(student => student.id !== studentId);
+            localStorage.setItem('students', JSON.stringify(students)); // Update local storage
+            displayStudents(); // Refresh displayed list
+        }
+
+        // Handle fee form submission
+        document.getElementById('feeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const courseName = document.getElementById('courseName').value;
+            const courseFees = document.getElementById('courseFees').value;
+
+            // Add new fee structure
+            const newFee = {
+                course: courseName,
+                fees: courseFees,
+                status: 'Outstanding'
+            };
+            fees.push(newFee);
+
+            // Save fees to local storage
+            localStorage.setItem('fees', JSON.stringify(fees));
+
+            // Reset the form and refresh the displayed list
+            document.getElementById('feeForm').reset();
+            displayFees();
+        });
+    </script>
+</body>
+</html>

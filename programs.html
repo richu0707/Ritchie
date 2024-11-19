@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - St. Vincent Pallotti College of Engineering and Technology</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background color */
+            line-height: 1.6;
+            overflow: hidden; /* Prevent scrolling on background animation */
+        }
+
+        #contact {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 800px; /* Set a max-width for the contact section */
+            margin: 0 auto; /* Center the section */
+            text-align: center; /* Center all text in this section */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for better aesthetics */
+            position: relative; /* Position relative to handle z-index */
+            z-index: 2; /* Higher z-index to be above the background */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333; /* Dark text color */
+            animation: rainbowHeader 5s linear infinite; /* Rainbow animation for the header */
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+            -webkit-background-clip: text; /* Clip background to text */
+            -webkit-text-fill-color: transparent; /* Fill color with transparent to show gradient */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            margin-bottom: 20px; /* Space below form */
+        }
+
+        input,
+        textarea {
+            width: 100%; /* Full width */
+            max-width: 500px; /* Limit width */
+            padding: 10px; /* Padding for inputs */
+            margin: 10px 0; /* Space between fields */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+        }
+
+        button {
+            background-color: #28a745; /* Green background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size */
+            animation: rainbowButton 5s linear infinite; /* Rainbow button animation */
+        }
+
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .contact-info {
+            margin-top: 30px; /* Space above contact info */
+            text-align: left; /* Align text to left */
+        }
+
+        /* Animations */
+        @keyframes rainbowHeader {
+            0% {
+                background-position: 0% 50%; /* Start at the left */
+            }
+            100% {
+                background-position: 100% 50%; /* Move to the right */
+            }
+        }
+
+        @keyframes rainbowButton {
+            0% {
+                background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow colors */
+            }
+            100% {
+                background: linear-gradient(90deg, violet, red, orange, yellow, green, blue, indigo); /* Reverse rainbow */
+            }
+        }
+
+        /* Background Animation */
+        .rainbow-background {
+            position: fixed; /* Fixed position for background */
+            top: 0; /* Align to top */
+            left: 0; /* Align to left */
+            width: 100vw; /* Full width */
+            height: 100vh; /* Full height */
+            background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet); /* Rainbow gradient */
+            background-size: 400% 400%; /* Size to animate */
+            animation: rainbowBackground 10s ease infinite; /* Animation for background */
+            z-index: 1; /* Lower z-index to be behind the content */
+        }
+
+        @keyframes rainbowBackground {
+            0% {
+                background-position: 0% 50%; /* Start at the left */
+            }
+            100% {
+                background-position: 100% 50%; /* Move to the right */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="rainbow-background"></div> <!-- Background Div -->
+
+    <div id="contact">
+        <h1>Contact Us</h1>
+        <form action="submit_contact.php" method="POST"> <!-- Replace with your server-side processing script -->
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <h2>Our Contact Details</h2>
+            <p><strong>Email:</strong> info@stvincentngp.edu.in</p>
+            <p><strong>Phone:</strong> +91 9423683433</p>
+            <p><strong>Address:</strong> St. Vincent Pallotti College of Engineering & Technology, Nagpur, India.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

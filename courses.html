@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - ST. Vincent Pallotti College of Engineering and Technology</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #7f00ff);
+            background-size: 400% 400%; /* Size for the animation */
+            animation: rainbow 15s ease infinite; /* Animation effect */
+            color: #333; /* Darker text color for readability */
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header Section */
+        header {
+            background: rgba(51, 51, 51, 0.8); /* Dark background with transparency */
+            color: white; /* Light text color */
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 28px; /* Adjusted font size */
+            margin-bottom: 10px; /* Space below the title */
+        }
+
+        nav ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+
+        nav ul li {
+            display: inline; /* Horizontal list */
+            margin: 0 15px; /* Space between links */
+        }
+
+        nav ul li a {
+            color: white; /* Link color */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold text */
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Courses Section */
+        #courses {
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            max-width: 800px; /* Limit width for readability */
+            margin: 20px auto; /* Center the section */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .course-list {
+            margin-top: 20px; /* Space above the list */
+        }
+
+        .course-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc; /* Separator between items */
+            margin-bottom: 10px; /* Space between items */
+        }
+
+        .course-item:last-child {
+            border-bottom: none; /* Remove border for the last item */
+        }
+
+        .course-description {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+            padding: 10px;
+            background: #e9e9e9; /* Light background for description */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(51, 51, 51, 0.8); /* Dark background with transparency */
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px; /* Smaller title on small screens */
+            }
+
+            #courses h2 {
+                font-size: 24px; /* Smaller heading on small screens */
+            }
+
+            .course-item {
+                font-size: 16px; /* Smaller font size for courses */
+            }
+        }
+    </style>
+    <script>
+        function toggleDescription(courseId) {
+            var description = document.getElementById(courseId);
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+            } else {
+                description.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>ST. Vincent Pallotti College of Engineering and Technology</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="courses.html">Courses</a></li> <!-- Updated Link -->
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <h2>Our Courses</h2>
+        <p>At ST. Vincent Pallotti College of Engineering and Technology, we offer a wide range of courses to equip you with the skills necessary for your future career. Below is a list of our available courses:</p>
+        <div class="course-list">
+            <div class="course-item">
+                <strong onclick="toggleDescription('cs-description')" style="cursor:pointer;">Bachelor of Engineering (B.E.) in Computer Science</strong>
+                <div id="cs-description" class="course-description">
+                    This program focuses on computer science principles and includes software development, data structures, and algorithms.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('ec-description')" style="cursor:pointer;">Bachelor of Engineering (B.E.) in Electronics and Communication</strong>
+                <div id="ec-description" class="course-description">
+                    This course emphasizes electronics, communication systems, and circuit design, preparing students for a career in the tech industry.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('me-description')" style="cursor:pointer;">Bachelor of Engineering (B.E.) in Mechanical Engineering</strong>
+                <div id="me-description" class="course-description">
+                    Mechanical Engineering involves the design, analysis, and manufacturing of mechanical systems, integrating principles from engineering, physics, and materials science.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('ce-description')" style="cursor:pointer;">Bachelor of Engineering (B.E.) in Civil Engineering</strong>
+                <div id="ce-description" class="course-description">
+                    This program covers the design and construction of infrastructure projects, focusing on sustainability and innovation.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('me-computer-description')" style="cursor:pointer;">Master of Engineering (M.E.) in Computer Science</strong>
+                <div id="me-computer-description" class="course-description">
+                    Aimed at advanced studies in computer science, this program includes topics like artificial intelligence, machine learning, and big data analytics.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('me-structural-description')" style="cursor:pointer;">Master of Engineering (M.E.) in Structural Engineering</strong>
+                <div id="me-structural-description" class="course-description">
+                    This program focuses on designing and analyzing structures, ensuring they can withstand loads and forces.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('diploma-description')" style="cursor:pointer;">Diploma in Engineering</strong>
+                <div id="diploma-description" class="course-description">
+                    A foundational program for engineering, covering essential principles and practical applications in various fields.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('phd-description')" style="cursor:pointer;">Ph.D. in Engineering</strong>
+                <div id="phd-description" class="course-description">
+                    A research-oriented program, where students work on innovative projects, contributing to knowledge and technology in engineering.
+                </div>
+            </div>
+            <div class="course-item">
+                <strong onclick="toggleDescription('cyber-security-description')" style="cursor:pointer;">Bachelor of Engineering (B.E.) in Cyber Security</strong>
+                <div id="cyber-security-description" class="course-description">
+                    This course prepares students to protect systems, networks, and programs from digital attacks and security breaches.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 ST. Vincent Pallotti College of Engineering and Technology. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
